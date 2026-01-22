@@ -21,7 +21,9 @@ const UI = {
             btnShop: document.getElementById('btn-shop'),
             btnBag: document.getElementById('btn-bag'),
             btnTasks: document.getElementById('btn-tasks'),
-            btnFriends: document.getElementById('btn-friends')
+            btnFriends: document.getElementById('btn-friends'),
+            btnStoryRecord: document.getElementById('btn-story-record'),
+            closeRecord: document.getElementById('close-record')
         };
     },
 
@@ -40,6 +42,10 @@ const UI = {
         this.dom.btnBag.addEventListener('click', () => this.openBag());
         this.dom.btnTasks.addEventListener('click', () => this.showTasksModal());
         this.dom.btnFriends.addEventListener('click', () => this.showToast("好友系统开发中..."));
+        
+        // Story Record
+        this.dom.btnStoryRecord.addEventListener('click', () => Stories.showStoryRecord());
+        this.dom.closeRecord.addEventListener('click', () => Stories.closeStoryRecord());
     },
 
     updateResources() {
@@ -374,6 +380,13 @@ const UI = {
             grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #888;">背包是空的，去商店看看吧！</p>';
         }
         
+        this.dom.modalOverlay.classList.remove('hidden');
+    },
+
+    // Show modal with custom content
+    showModal(title, content) {
+        this.dom.modalTitle.textContent = title;
+        this.dom.modalBody.innerHTML = content;
         this.dom.modalOverlay.classList.remove('hidden');
     },
 

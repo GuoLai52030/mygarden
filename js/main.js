@@ -15,26 +15,21 @@ document.addEventListener('DOMContentLoaded', () => {
         UI.showToast("欢迎来到花园世界！点击空地开始种植吧 🌱");
     }, 500);
 
-    // Start Resource Regeneration (DISABLED for Task System)
-    // Resources.startRegeneration();
+    // Start Resource Regeneration
+    Resources.startRegeneration();
     
     // Game Loop
-    let lastTick = Date.now();
-
     setInterval(() => {
-        const now = Date.now();
-        // const delta = now - lastTick; // Not using delta for simplicity in this version, trusting interval
-        lastTick = now;
-
-        // Update Logic
         Garden.update();
+        Resources.save(); // Auto save
+    }, 1000);
 
-        // Auto Save occasionally
-        if (now % 10000 < 1000) { // Every ~10 seconds
-             // Resources.save(); // Resources saves on change, but we could add a full save here
-        }
-
-    }, CONFIG.TICK_RATE);
-
-    console.log("Garden World Started!");
+    // Initial Story Trigger (Intro)
+    // Check if task 1 is not completed, then show intro story
+    const firstTask = Tasks.tasks.find(t => t.id === 1);
+    if (firstTask && !firstTask.completed) {
+        setTimeout(() => {
+            Stories.checkTrigger(0); // 0 is trigger for intro
+        }, 1000);
+    }
 });

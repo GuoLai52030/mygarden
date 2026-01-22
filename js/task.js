@@ -41,6 +41,9 @@ class Task {
         
         UI.showToast(msg);
         UI.updateTasksUI(); // Refresh UI if open
+
+        // Check if this task triggers a story
+        Stories.checkTrigger(this.id);
     }
 
     getProgress() {

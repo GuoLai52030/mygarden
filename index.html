@@ -57,17 +57,52 @@
             </div>
         </div>
 
+        <!-- 剧情对话框 -->
+        <div id="story-container" class="hidden">
+            <div class="story-phone">
+                <div class="story-header">
+                    <h2 id="story-title">剧情标题</h2>
+                    <button id="close-story" class="close-btn" onclick="Stories.closeStory()">×</button>
+                </div>
+                <div id="story-body-content" class="story-body">
+                    <!-- 剧情内容 -->
+                </div>
+                <div class="story-footer">
+                    <button id="continue-story" class="btn">继续</button>
+                </div>
+            </div>
+        </div>
+
         <!-- 浮动提示信息 -->
         <div id="toast-container"></div>
     </div>
 
     <!-- 脚本引用 -->
+    <!-- 剧情记录按钮 -->
+    <button id="btn-story-record" class="story-btn">
+        📖 剧情记录
+    </button>
+
+    <!-- 剧情记录界面 -->
+    <div id="story-record-container" class="story-record-container hidden">
+        <div class="story-phone">
+            <div class="story-header">
+                <h2>剧情记录</h2>
+                <button id="close-record" class="close-btn">×</button>
+            </div>
+            <div id="story-record-body" class="story-body">
+                <!-- 剧情记录内容 -->
+            </div>
+        </div>
+    </div>
+
     <script src="js/config.js" defer></script>
     <script src="js/resources.js" defer></script>
     <script src="js/plant.js" defer></script>
     <script src="js/garden.js" defer></script>
     <script src="js/shop.js" defer></script>
     <script src="js/task.js" defer></script>
+    <script src="js/story.js" defer></script>
     <script src="js/ui.js" defer></script>
     <script src="js/main.js" defer></script>
 </body>

@@ -91,6 +91,92 @@ body {
     100% { transform: scale(1); }
 }
 
+/* Story Record Button */
+.story-btn {
+    position: fixed;
+    bottom: 100px; /* Above the bottom nav bar (which is ~80px height usually, or based on padding) */
+    right: 20px;   /* Align to right */
+    background: #fff;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: all 0.2s;
+    z-index: 90; /* Below modals but above grid */
+    color: #555;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.story-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    background: #f9f9f9;
+}
+
+/* Story Record Container */
+.story-record-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex; /* Flex to center */
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Reusing .story-phone styles but potentially overriding positioning if needed */
+.story-record-container .story-phone {
+    width: 320px;
+    height: 500px;
+    border: 4px solid #333;
+}
+
+.story-record-item {
+    background-color: #f9f9f9;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    transition: background 0.2s;
+    text-align: left;
+}
+
+.story-record-item:hover {
+    background-color: #f0f4c3;
+    border-color: #dce775;
+}
+
+.story-record-item h3 {
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.story-record-item p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #666;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 /* Main Garden Area */
 #garden-view {
     flex: 1;
@@ -233,6 +319,114 @@ body {
     box-shadow: 0 0 0 #d7ccc8;
 }
 
+/* Story System */
+#story-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center in viewport */
+    z-index: 999;
+    /* Default hidden handled by .hidden class */
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slideInUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.story-phone {
+    background: #fff;
+    border-radius: 20px;
+    width: 280px; /* Phone-like width */
+    min-height: 350px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 4px solid #333; /* Phone bezel look */
+    position: relative;
+}
+
+/* Phone notch/speaker decoration */
+.story-phone::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 5px;
+    background: #eee;
+    border-radius: 5px;
+}
+
+.story-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px; /* Space for notch */
+    margin-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.story-header h2 {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 0;
+}
+
+.story-body {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    overflow-y: auto;
+}
+
+.story-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.story-footer .btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 0 #388e3c;
+}
+
+.story-footer .btn:hover {
+    background-color: #43a047;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #388e3c;
+}
+
+.story-footer .btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #388e3c;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #666;
+}
+
 /* Modal */
 .hidden {
     display: none !important;
@@ -245,7 +439,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 100;
+    z-index: 2000; /* Ensure it's above story record (1000) and everything else */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -378,7 +572,7 @@ body {
     gap: 10px;
     max-height: 350px;
     overflow-y: auto;
-    padding-right: 10px; /* Add space for scrollbar */
+    padding-right: 20px; /* Increased space for scrollbar */
 }
 
 .task-item {
@@ -487,28 +681,30 @@ body {
 .shop-grid::-webkit-scrollbar,
 .inventory-grid::-webkit-scrollbar,
 .grid-container::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
 }
 
 .task-list::-webkit-scrollbar-track,
 .shop-grid::-webkit-scrollbar-track,
 .inventory-grid::-webkit-scrollbar-track,
 .grid-container::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.05);
-    border-radius: 4px;
+    background: transparent;
+    border-radius: 5px;
 }
 
 .task-list::-webkit-scrollbar-thumb,
 .shop-grid::-webkit-scrollbar-thumb,
 .inventory-grid::-webkit-scrollbar-thumb,
 .grid-container::-webkit-scrollbar-thumb {
-    background: #aed581;
-    border-radius: 4px;
+    background-color: #aed581;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
 }
 
 .task-list::-webkit-scrollbar-thumb:hover,
 .shop-grid::-webkit-scrollbar-thumb:hover,
 .inventory-grid::-webkit-scrollbar-thumb:hover,
 .grid-container::-webkit-scrollbar-thumb:hover {
-    background: #8d6e63;
+    background-color: #8d6e63;
 }

@@ -13,14 +13,14 @@ class ResourceManager {
     }
 
     startRegeneration() {
-        // Disabled passive regeneration in favor of Task System
-        /*
+        // Passive regeneration: 1 water every 60 seconds
         if (this.regenInterval) clearInterval(this.regenInterval);
         this.regenInterval = setInterval(() => {
-            this.addResource('water', 2);
-            this.addResource('sun', 2);
-        }, 5000); // Every 5 seconds
-        */
+            this.addResource('water', 1);
+            // Sun is not auto-regenerated (user decision or task based?) 
+            // User prompt said "enable water regeneration... 1 min 1 drop".
+            // So we only regen water here.
+        }, 60000); // Every 60 seconds
     }
 
     addCoin(amount) {
