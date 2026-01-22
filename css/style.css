@@ -93,8 +93,8 @@ body {
 
 /* Story Record Button */
 .story-btn {
-    position: fixed;
-    bottom: 100px; /* Above the bottom nav bar (which is ~80px height usually, or based on padding) */
+    position: absolute;
+    bottom: 100px; /* Above the bottom nav bar */
     right: 20px;   /* Align to right */
     background: #fff;
     border: 2px solid #ddd;
