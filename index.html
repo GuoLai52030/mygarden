@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>我的花园世界</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- 顶部资源栏 -->
+        <header id="top-bar">
+            <div class="resource-item">
+                <span class="icon">💧</span>
+                <span id="water-count">0</span>
+            </div>
+            <div class="resource-item">
+                <span class="icon">☀️</span>
+                <span id="sun-count">0</span>
+            </div>
+            <button id="btn-sun-boost" class="boost-btn">☀️ 加速</button>
+            <div class="resource-item">
+                <span class="icon">💰</span>
+                <span id="coin-count">0</span>
+            </div>
+            <div class="resource-item">
+                <span class="icon">⭐</span>
+                <span id="level-display">Lv.1</span>
+            </div>
+        </header>
+
+        <!-- 游戏主区域：花园 -->
+        <main id="garden-view">
+            <div id="garden-grid" class="grid-container">
+                <!-- 地块由JS生成 -->
+            </div>
+        </main>
+
+        <!-- 底部操作栏 -->
+        <nav id="bottom-bar">
+            <button id="btn-shop" class="nav-btn">🛒 商店</button>
+            <button id="btn-bag" class="nav-btn">🎒 背包</button>
+            <button id="btn-tasks" class="nav-btn">📋 任务</button>
+            <button id="btn-friends" class="nav-btn">🤝 好友</button>
+        </nav>
+
+        <!-- 弹窗模态框 -->
+        <div id="modal-overlay" class="hidden">
+            <div id="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">标题</h2>
+                    <button id="modal-close" class="modal-close-btn">×</button>
+                </div>
+                <div id="modal-body">
+                    <!-- 动态内容 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 浮动提示信息 -->
+        <div id="toast-container"></div>
+    </div>
+
+    <!-- 脚本引用 -->
+    <script src="js/config.js" defer></script>
+    <script src="js/resources.js" defer></script>
+    <script src="js/plant.js" defer></script>
+    <script src="js/garden.js" defer></script>
+    <script src="js/shop.js" defer></script>
+    <script src="js/task.js" defer></script>
+    <script src="js/ui.js" defer></script>
+    <script src="js/main.js" defer></script>
+</body>
+</html>
